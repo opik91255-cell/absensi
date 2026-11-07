@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="id"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masuk | Absensi</title><link rel="stylesheet" href="assets/css/style.css">
+</head><body class="login-page">
+<main class="login-card">
+  <div class="eyebrow">Portal kehadiran</div>
+  <h1>Masuk ke akun</h1>
+  <p class="sub">Gunakan akun yang diberikan oleh pengelola.</p>
+  <div id="message" class="notice" hidden></div>
+  <form id="loginForm">
+    <div class="field"><label for="email">Email</label><input id="email" type="email" required autocomplete="username"></div>
+    <div class="field"><label for="password">Kata sandi</label><input id="password" type="password" required autocomplete="current-password"></div>
+    <button class="button primary" style="width:100%" type="submit">Masuk</button>
+  </form>
+  <p class="small" style="margin-top:18px">Butuh akun? Hubungi admin.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script><script src="assets/js/supabase.js"></script>
+<script>
+document.getElementById("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const button = e.submitter; button.disabled = true; button.textContent = "Memeriksa...";
+  const { error } = await db.auth.signInWithPassword({
+    email: document.getElementById("email").value.trim(),
+    password: document.getElementById("password").value
+  });
+  if (error) { showMessage("#message", error.message, "error"); button.disabled = false; button.textContent = "Masuk"; return; }
+  try {
+    const p = await currentProfile();
+    const next = new URLSearchParams(location.search).get('next');
+    location.href = p.role === "participant" && next && /^peserta\/scan\.html(?:\?token=[a-zA-Z0-9]+)?$/.test(next) ? next : (p.role === "admin" ? "admin/index.html" : "peserta/index.html");
+  } catch(err) { showMessage("#message", "Profil akun belum tersedia. Hubungi admin.", "error"); }
+});
+</script></body></html>
