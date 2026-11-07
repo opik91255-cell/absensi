@@ -65,3 +65,11 @@ Buka folder di VS Code, jalankan menggunakan Live Server. Kamera memerlukan loca
 
 ## Sebelum produksi
 Uji RLS dengan akun admin dan peserta yang berbeda. Gunakan password kuat, aktifkan kebijakan autentikasi yang sesuai, dan pertimbangkan audit log untuk aktivitas admin.
+
+
+## Pembaruan: pendaftaran username dan daftar hadir kelas
+1. Jalankan `supabase/migration_username_registration.sql` satu kali setelah schema utama dan migration One QR.
+2. Di Supabase Authentication settings, nonaktifkan **Confirm email** untuk alur username internal tanpa alamat email sungguhan. Akun peserta memakai alamat internal `username@login.hadir.invalid`; jangan gunakan alamat tersebut untuk komunikasi email.
+3. Peserta mendaftar lewat `daftar.html` dengan nama, NIS/NIM, username, kelas, dan password. Login menerima username/NIS (username) atau email untuk admin lama.
+4. Daftar teman sekelas hanya menampilkan peserta yang tercatat hadir pada sesi yang sama, dan hanya dapat dibuka oleh peserta yang juga tercatat hadir pada sesi tersebut.
+5. Kelas yang diketik saat pendaftaran belum diverifikasi admin. Untuk penggunaan resmi, cocokkan/validasi kelas dan NIS peserta melalui pengelola.

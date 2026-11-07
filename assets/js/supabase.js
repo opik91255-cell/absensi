@@ -3,6 +3,11 @@ const db = window.supabase.createClient(
   window.SUPABASE_ANON_KEY
 );
 
+function usernameEmail(value) {
+  const username = String(value || "").trim().toLowerCase();
+  return username + "@login.hadir.invalid";
+}
+
 async function currentProfile() {
   const { data: { user }, error } = await db.auth.getUser();
   if (error || !user) return null;

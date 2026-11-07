@@ -6,7 +6,7 @@
 <p class="small">Jika QR dibuka melalui kamera bawaan HP, halaman ini akan langsung menampilkan informasi kelas setelah login.</p></section></main></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://unpkg.com/html5-qrcode"></script><script src="../assets/js/config.js"></script><script src="../assets/js/supabase.js"></script><script src="../assets/js/auth.js"></script>
 <script>
-let scanner=null,token='';
+let scanner=null,token='',sessionId='';
 document.addEventListener('DOMContentLoaded',async()=>{
  const {data:{user}}=await db.auth.getUser();
  if(!user){location.replace('../login.html?next='+encodeURIComponent('peserta/scan.html'+location.search));return;}
@@ -22,7 +22,7 @@ async function preview(value){
  if(!candidate){showMessage('#message','QR tidak berisi token sesi.','error');return;}
  const {data,error}=await db.rpc('preview_session_qr',{p_token:candidate});
  if(error||!data?.ok){document.getElementById('details').hidden=true;showMessage('#message',error?.message||data?.message||'QR tidak valid.','error');return;}
- token=candidate;document.getElementById('title').textContent=data.title;
+ token=candidate;sessionId=data.session_id;document.getElementById('title').textContent=data.title;
  document.getElementById('date').textContent='Tanggal: '+data.session_date;
  document.getElementById('details').hidden=false;
  document.getElementById('message').hidden=true;
