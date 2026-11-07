@@ -69,3 +69,19 @@ th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spa
   .grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
 }
+<<<<<<< HEAD
+
+/* Mobile keyboard and form usability */
+html { scroll-behavior: smooth; scroll-padding-bottom: 35vh; }
+body { min-height: 100dvh; }
+.login-page { min-height: 100dvh; align-items: start; padding: max(20px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom)); }
+.login-card { margin: auto 0; max-height: none; }
+.login-card input { min-height: 46px; font-size: 16px; }
+.remember-row { display:flex; align-items:flex-start; gap:10px; margin: 4px 0 16px; font-size:13px; cursor:pointer; }
+.remember-row input { width:18px; height:18px; margin:1px 0 0; flex:0 0 auto; }
+.remember-row span { display:grid; gap:3px; }
+.remember-row small { color:var(--muted); font-size:12px; font-weight:400; }
+.login-card.keyboard-open { margin-top: 12px; margin-bottom: 12px; }
+@media (max-width: 600px) { .login-card { padding:24px 20px; } .login-page { display:flex; justify-content:center; } }
+=======
+>>>>>>> faff4a2915a67fdd9bd797423990adc043e4610c

@@ -10,7 +10,11 @@
 <script>
 document.addEventListener("DOMContentLoaded",async()=>{
  const p=await requireRole("participant");if(!p)return;
+<<<<<<< HEAD
+ document.getElementById("name").textContent=p.full_name;
+=======
  document.getElementById("name").textContent=p.full_name;document.getElementById("number").textContent=p.student_number||"-";
+>>>>>>> faff4a2915a67fdd9bd797423990adc043e4610c
  const {data,error}=await db.from("attendance").select("checked_at,status,attendance_sessions(title,session_date)").order("checked_at",{ascending:false});
  if(error){document.getElementById("history").innerHTML="<tr><td colspan='4'>Riwayat tidak dapat dimuat.</td></tr>";return;}
  const list=data||[];document.getElementById("count").textContent=list.length;

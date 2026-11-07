@@ -70,6 +70,20 @@ Uji RLS dengan akun admin dan peserta yang berbeda. Gunakan password kuat, aktif
 ## Pembaruan: pendaftaran username dan daftar hadir kelas
 1. Jalankan `supabase/migration_username_registration.sql` satu kali setelah schema utama dan migration One QR.
 2. Di Supabase Authentication settings, nonaktifkan **Confirm email** untuk alur username internal tanpa alamat email sungguhan. Akun peserta memakai alamat internal `username@login.hadir.invalid`; jangan gunakan alamat tersebut untuk komunikasi email.
+<<<<<<< HEAD
+3. Peserta mendaftar lewat `daftar.html` dengan nama lengkap, username, kelas, dan password. Login menerima username/NIS (username) atau email untuk admin lama.
+4. Daftar teman sekelas hanya menampilkan nama, waktu, dan status peserta yang tercatat hadir pada sesi yang sama, dan hanya dapat dibuka oleh peserta yang juga tercatat hadir pada sesi tersebut.
+5. Kelas yang diketik saat pendaftaran belum diverifikasi admin. Untuk penggunaan resmi, cocokkan/validasi kelas dan NIS peserta melalui pengelola.
+
+## Pembaruan antarmuka perangkat seluler
+- Formulir peserta tidak meminta NIM/NIS, email, atau nomor identitas.
+- Login peserta menggunakan username dan password; admin tetap menggunakan email dan password.
+- Opsi **Ingat perangkat ini** ditampilkan pada halaman login. Supabase Auth menyimpan sesi pada penyimpanan browser secara default; logout manual atau menghapus data browser akan mengakhiri sesi tersimpan.
+- Form login dan pendaftaran memakai penyesuaian viewport/scroll saat keyboard virtual terbuka agar input dan tombol tidak tertutup.
+
+**Catatan implementasi penting:** alur username saat ini memakai alamat internal teknis `username@login.hadir.invalid` untuk menjembatani Supabase Auth. Peserta tidak mengisi email. Pastikan fungsi registrasi dan trigger database diselaraskan sebelum dipakai; jangan pernah menyimpan password sendiri atau menaruh service-role key di frontend.
+=======
 3. Peserta mendaftar lewat `daftar.html` dengan nama, NIS/NIM, username, kelas, dan password. Login menerima username/NIS (username) atau email untuk admin lama.
 4. Daftar teman sekelas hanya menampilkan peserta yang tercatat hadir pada sesi yang sama, dan hanya dapat dibuka oleh peserta yang juga tercatat hadir pada sesi tersebut.
 5. Kelas yang diketik saat pendaftaran belum diverifikasi admin. Untuk penggunaan resmi, cocokkan/validasi kelas dan NIS peserta melalui pengelola.
+>>>>>>> faff4a2915a67fdd9bd797423990adc043e4610c
